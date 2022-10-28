@@ -18,7 +18,7 @@ arrow.addEventListener("click",function topFunction() {
     document.documentElement.scrollTop = 0;
   })
 btn.addEventListener("click",function scrollWin() {
-    window.scrollTo(0, 700);
+    window.scrollTo(0, 800);
    
   });
 
