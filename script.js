@@ -30,10 +30,35 @@ let originalName = search.split(' ').join('');
 
 fetch(url+originalName)
 .then((resp)=>resp.json())
-.then((data)=>
+.then((data)=> showData(data));
+
+showData();
+})
+
+function showData(data)
 {
+  let t1 = data.login;
+  if(!t1)
+  {
+    console.log("hii")
+    notfound.style.visibility = "visible"
+    notfound.innerHTML = `<h2>OOPS! 😥Profile not found! Enter valid username! </h2>`
+    container.style.display = "none";
+    
+  }
+  else
+  {
+    container.style.display = "flex";
+    notfound.style.visibility = "hidden"
+    fetchData(data);
+  }
+}
 
-
+function fetchData(data)
+{
+  
+  
+   
    dp.innerHTML = `<img src="${data.avatar_url}" width="100%" style = "border-radius:50%;">`
    console.log(data)
    username.innerHTML = `@${data.login}`
@@ -44,17 +69,6 @@ fetch(url+originalName)
    follower.innerHTML =  `<img src="./img/follower.png" width="20px"> Followers : ${data.followers}`;
    following.innerHTML = `<img src="./img/check.png" width="20px">Following : ${data.following}`;
    repo.innerHTML = `${data.public_repos}`;
-
-if(!data.login)
-{
-notfound.innerHTML = `<h2>OOPS! 😥Profile not found! Enter valid username! </h2>`
-container.style.display = "none";
-
-
-}
-
    
-})
-search.value = " ";
-
-})
+  
+}
